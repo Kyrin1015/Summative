@@ -1,5 +1,7 @@
 class Main {
+
   public static void main(String[] args) {
-    System.out.println("Hello world!");
+    Output out = new Output();
+    out.total_without_tax();
   }
 }
