@@ -4,11 +4,13 @@ public class Output {
   public int totalval;
   public int addition;
   
+  //Constructor
   public Output() {
     totalval = 0;
     addition = 0;
   }
 
+  //class function to read the total
   public void total_without_tax() {
     try {
       FileReader fr = new FileReader("ValueFile.txt");
