@@ -1,15 +1,18 @@
 import java.util.*;
+import java.io.*;
 
 public class Input {
   //Class variables
   public boolean run;
   public String tempval;
+  public int size;
   public ArrayList<String> amount;
   public ArrayList<String> reason;
   public ArrayList<String> tax;
 
   //constructor
   public Input() {
+    size = 0;
     run = true;
     amount = new ArrayList<String>();
     reason = new ArrayList<String>();
@@ -47,6 +50,8 @@ public class Input {
         reason.add(tempval);
       }
     }
+    amountToTxt();
+    reasonToTxt();
   }
   
 
@@ -86,6 +91,49 @@ public class Input {
   public void user_exit(String tempval) {
     if (tempval.equals("Exit")) {
       run = false;
+    }
+  }
+
+  //Moves all of the Amount values from a list to a txt file
+  public void amountToTxt() {
+    size = amount.size();
+    FileWriter fw = null; 
+    BufferedWriter bw = null; 
+    PrintWriter pw = null;
+    try {
+      File file = new File("Amount.txt");
+      fw = new FileWriter(file, true); 
+      bw = new BufferedWriter(fw); 
+      pw = new PrintWriter(bw);
+      for (int i = 0; i < size; i++) {
+        pw.println(amount.get(i));
+      }
+      pw.flush();
+      pw.close(); 
+      bw.close(); 
+      fw.close(); 
+    } catch (IOException io) {
+    }
+  }
+
+  public void reasonToTxt() {
+    size = reason.size();
+    FileWriter fw = null; 
+    BufferedWriter bw = null; 
+    PrintWriter pw = null;
+    try {
+      File file = new File("reason.txt");
+      fw = new FileWriter(file, true); 
+      bw = new BufferedWriter(fw); 
+      pw = new PrintWriter(bw);
+      for (int i = 0; i < size; i++) {
+        pw.println(reason.get(i));
+      }
+      pw.flush();
+      pw.close(); 
+      bw.close(); 
+      fw.close(); 
+    } catch (IOException io) {
     }
   }
 }
