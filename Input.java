@@ -1,10 +1,12 @@
 import java.util.*;
 import java.io.*;
+import java.time.LocalDate;
 
 public class Input {
   //Class variables
   public boolean run;
   public String tempval;
+  public String date;
   public int size;
   public ArrayList<String> amount;
   public ArrayList<String> reason;
@@ -18,6 +20,7 @@ public class Input {
     reason = new ArrayList<String>();
     tax = new ArrayList<String>();
     tempval = "";
+    date = "";
   }
 
   public void inputLoop() {
@@ -48,6 +51,34 @@ public class Input {
         tempval = keyboard.nextLine();
         checkValidReason(tempval);
         reason.add(tempval);
+
+        try {
+          //Saves dates
+          System.out.println("Enter the year of transaction(Ex. 2019): ");
+          int temp = Integer.parseInt(keyboard.nextLine());
+          date += temp + "/";
+          System.out.println("Enter the month of transaction(1-12): ");
+          temp = Integer.parseInt(keyboard.nextLine());
+          if (temp < 1 || temp > 12) {
+            System.out.println("Month out of range. Please try again!");
+            continue;
+          } else {
+            date += temp + "/";
+            System.out.println("Enter the date of the transaction");
+            temp = Integer.parseInt(keyboard.nextLine());
+            int maxday = 0;
+            if (temp == 1 || temp == 3 || temp == 5 || temp == 7 || temp == 8 || temp == 10 || temp == 12) {
+              maxday = 31;
+            } else if (temp == 2) {
+              maxday = 29;
+            } else {
+              maxday = 30;
+            }
+            if (temp <)
+          }
+        } catch (Exception e){
+          System.out.println("Not a number.Please try again.");
+        }
       }
     }
     amountToTxt();
