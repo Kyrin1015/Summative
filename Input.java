@@ -1,5 +1,6 @@
- import java.util.*;
+import java.util.*;
 import java.io.*;
+import java.math.*;
 
 public class Input {
   //Class variables
@@ -39,7 +40,7 @@ public class Input {
     //Rules for user input
     System.out.println("type 'Exit' to exit the program, at any point.");
     System.out.println("For reasons, please type in any of the following. Any other inputs will not be accepted.");
-    System.out.println("Rent, Cleaning supplies, Salary, Electricity bill, Water bill.");
+    System.out.println("Sales, Rent, Cleaning supplies, Salary, Electricity bill, Water bill.");
 
     Scanner keyboard = new Scanner(System.in);
     //user input loop
@@ -67,8 +68,6 @@ public class Input {
         
         System.out.println("Enter the year, month, then date in numbers(Ex. Month:6).");
         enterYear();
-        enterMonth();
-        enterDate();
       }
     }
     amountToTxt();
@@ -151,6 +150,7 @@ public class Input {
         }
         year.add(tempval);
         yeartrue = false;
+        enterMonth();
       }
     }
   }
@@ -174,6 +174,7 @@ public class Input {
         }
         month.add(tempval);
         monthtrue = false;
+        enterDate();
       }
     }
   }
@@ -255,7 +256,23 @@ public class Input {
       bw = new BufferedWriter(fw); 
       pw = new PrintWriter(bw);
       for (int i = 0; i < size; i++) {
-        pw.println(tax.get(i));
+        double val = tax.get(i)*Double.parseDouble(amount.get(i));
+        pw.println(round(val, 2));
+      }
+      pw.flush();
+      pw.close(); 
+      bw.close(); 
+      fw.close(); 
+    } catch (IOException io) {
+    }
+    try {
+      File file = new File("TaxAmount.txt");
+      fw = new FileWriter(file, true); 
+      bw = new BufferedWriter(fw); 
+      pw = new PrintWriter(bw);
+      for (int i = 0; i < size; i++) {
+        double val = (tax.get(i)-1)*Double.parseDouble(amount.get(i));
+        pw.println(round(val, 2));
       }
       pw.flush();
       pw.close(); 
@@ -287,4 +304,13 @@ public class Input {
     } catch (IOException io) {
     }
   }
+
+  public static double round(double value, int places) {
+    if (places < 0) {
+      throw new IllegalArgumentException();
+      }
+    BigDecimal bd = BigDecimal.valueOf(value);
+    bd = bd.setScale(places, RoundingMode.HALF_UP);
+    return bd.doubleValue();
+}
 }
