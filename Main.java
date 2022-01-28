@@ -18,23 +18,19 @@ class Main {
 //Hari code
         final JFrame frame = new JFrame("Net Income/Loss");
 int h=4;
-        String[] columns = {"Amount", "Reason", "Tax Amount", "Amount with tax",
-                            "Date"};
+        String[] columns = {"Amount", "Reason", "Tax Amount", "Amount with tax","Date"};
 
-
-
-
-      //Creating ArrayList that will store value from txt file 
-      ArrayList<String> amount= new ArrayList<String>();
-      ArrayList<String> taxed= new ArrayList<String>();
-      ArrayList<String> date= new ArrayList<String>();
-      ArrayList<String> Reason= new ArrayList<String>();
-      ArrayList<String> tamount= new ArrayList<String>();
-      ArrayList<Integer> w= new ArrayList<Integer>();
-      ArrayList<Integer> p=new ArrayList<Integer>();
+//Creating ArrayList that will store value from txt file 
+ArrayList<String> amount= new ArrayList<String>();
+ArrayList<String> taxed= new ArrayList<String>();
+ArrayList<String> date= new ArrayList<String>();
+ArrayList<String> Reason= new ArrayList<String>();
+ArrayList<String> tamount= new ArrayList<String>();
+ArrayList<Integer> w= new ArrayList<Integer>();
+ArrayList<Integer> p=new ArrayList<Integer>();
+           
+           
            try {
-
-
       //Creating files 
       FileReader fr = new FileReader("Amount.txt");
       FileReader fre = new FileReader("Tax.txt");
@@ -48,6 +44,7 @@ int h=4;
       BufferedReader brr = new BufferedReader(frr);
       BufferedReader brs = new BufferedReader(frs);
 
+      //varibles that store the value after reading from the txt files
       String line = br.readLine();
       String liner = bre.readLine();
       String liners = bree.readLine();
@@ -63,7 +60,7 @@ int h=4;
       //while loop that iterates through txt files and adds element into the appropriate arraylists
       while (line != null) {
 
-        System.out.println(line);
+        
 
         line = br.readLine();
         amount.add(line);
